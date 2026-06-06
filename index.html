@@ -1,115 +1,248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Extensible Platform</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friends Chat — by SIFAT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div id="login-screen" class="login-container">
-        <div class="login-box">
-            <h2>Welcome Back</h2>
-            <p>Login with your UI Number or Gmail</p>
-            
-            <div class="input-group">
-                <input type="text" id="login-identifier" placeholder="UI Number or Gmail" required>
-            </div>
-            
-            <button class="btn-primary" onclick="handleLogin()">Login</button>
-            <hr class="divider">
-            <button class="btn-google" onclick="handleGoogleLogin()">Sign in with Google</button>
+  <!-- WARNING BANNER -->
+  <div id="warning-banner" class="warning-banner hidden">
+    <span id="warning-text"></span>
+    <button onclick="hideWarning()">✕</button>
+  </div>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-bg-glow"></div>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo-icon">FC</div>
+        <h1>Friends Chat</h1>
+        <p>SIFAT কর্তৃক নির্মিত</p>
+      </div>
+      <div class="login-form">
+        <div class="input-group">
+          <label>UI নম্বর অথবা Gmail</label>
+          <input type="text" id="login-input" placeholder="আপনার UI নম্বর বা Gmail লিখুন..." />
         </div>
+        <button class="btn-login" onclick="handleLogin()">
+          <span>লগইন করুন</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="divider"><span>অথবা</span></div>
+        <button class="btn-google" onclick="handleGoogleLogin()">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Google দিয়ে সাইন ইন
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div id="main-platform" class="dashboard-container" style="display: none;">
-        <div class="sidebar">
-            <div class="profile-section">
-                <div class="avatar">👤</div>
-                <h3 id="user-display-name">User Name</h3>
-                <span id="user-display-ui" class="ui-tag">UI: 00000000</span>
-            </div>
-            <nav class="menu">
-                <button class="menu-btn active" onclick="switchTab('home')">🏠 Home</button>
-                <button class="menu-btn" onclick="switchTab('community')">👥 Community</button>
-                <button class="menu-btn" onclick="switchTab('rules')">📜 Rules</button>
-                <button class="menu-btn" onclick="switchTab('post')">📝 Post (Locked)</button>
-            </nav>
+  <!-- MAIN DASHBOARD -->
+  <div id="dashboard" class="dashboard hidden">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-logo">FC</div>
+          <span>Friends Chat</span>
         </div>
+        <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+      </div>
 
-        <div class="content-area">
-            <header class="top-bar">
-                <h2 id="current-tab-title">Home Dashboard</h2>
-                <button class="btn-logout" onclick="handleLogout()">Logout</button>
-            </header>
-            
-            <div class="main-card" id="dynamic-content">
-                <div id="dashboard-view">
-                    <h3>Welcome to your new platform!</h3>
-                    <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। বাম পাশের মেনু থেকে <b>Community</b> এবং <b>Rules</b> সিলেক্ট করে ফিচারগুলো টেস্ট করুন।</p>
-                </div>
-
-                <div id="community-view" style="display: none; height: 100%; flex-direction: column;">
-                    <div id="ai-banner" class="ai-alert-banner" style="display: none;">
-                        ⚠️ <span id="ai-banner-text">আপনার এই লেখা/ইমোজি দেওয়া নিষেধ!</span>
-                    </div>
-
-                    <div id="chat-box" class="chat-messages-container">
-                        <div class="msg system">System: Welcome to the Global Community Chat!</div>
-                    </div>
-
-                    <div class="chat-input-container">
-                        <input type="text" id="chat-message-input" placeholder="Type a message..." onkeypress="handleChatKeyPress(event)">
-                        <button class="btn-send" onclick="sendCommunityMessage()">Send</button>
-                    </div>
-                </div>
-
-                <div id="rules-view" style="display: none; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 420px;">
-                    <div class="rules-header">
-                        <h2>HI I'm SIFAT.</h2>
-                        <p>Welcome to our Friends chat! আমাদের প্ল্যাটফর্মটিকে সুন্দর ও নিরাপদ রাখতে নিচের নিয়মগুলো মেনে চলুন:</p>
-                    </div>
-                    
-                    <div class="rules-list">
-                        <div class="rule-item">
-                            <span class="rule-number">১</span>
-                            <div class="rule-text">
-                                <h4>এআই ফিল্টার (AI Filter) নীতি</h4>
-                                <p>চ্যাট বা পোস্টে কোনো ধরনের খারাপ বাংলা/ইংলিশ শব্দ অথবা বাজে ইমোজি ব্যবহার করা সম্পূর্ণ নিষেধ। আমাদের কাস্টম এআই স্বয়ংক্রিয়ভাবে এগুলো ব্লক করে দেবে।</p>
-                            </div>
-                        </div>
-
-                        <div class="rule-item">
-                            <span class="rule-number">২</span>
-                            <div class="rule-text">
-                                <h4>বন্ধুত্বপূর্ণ আচরণ</h4>
-                                <p>কমিউনিটির সবার সাথে ভদ্র ও বন্ধুত্বপূর্ণ আচরণ করুন। কাউকে ব্যক্তিগতভাবে আক্রমণ বা ছোট করা যাবে না।</p>
-                            </div>
-                        </div>
-
-                        <div class="rule-item">
-                            <span class="rule-number">৩</span>
-                            <div class="rule-text">
-                                <h4>নো স্প্যামিং (No Spamming)</h4>
-                                <p>চ্যাটরুমে একই মেসেজ বারবার পাঠিয়ে বা কোনো লিংক শেয়ার করে স্প্যামিং করা যাবে না। এতে অন্যের চ্যাট করতে সমস্যা হয়।</p>
-                            </div>
-                        </div>
-
-                        <div class="rule-item">
-                            <span class="rule-number">৪</span>
-                            <div class="rule-text">
-                                <h4>সহায়তা ও মডারেশন</h4>
-                                <p>প্ল্যাটফর্মে কোনো সমস্যা হলে বা কেউ নিয়ম ভঙ্গ করলে সরাসরি আমাদের অ্যাডমিন প্যানেলকে জানান। পরবর্তীতে আমরা এখানে আরও নতুন নিয়ম যোগ করব।</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="profile-card">
+        <div class="profile-avatar" id="profile-avatar">U</div>
+        <div class="profile-info">
+          <div class="profile-name" id="profile-name">ব্যবহারকারী</div>
+          <div class="profile-tag" id="profile-tag">UI: 00000000</div>
         </div>
-    </div>
+      </div>
 
-    <script src="app.js"></script>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="home" onclick="switchTab('home')">
+          <span class="nav-icon">🏠</span>
+          <span>হোম</span>
+        </button>
+        <button class="nav-item" data-tab="community" onclick="switchTab('community')">
+          <span class="nav-icon">👥</span>
+          <span>কমিউনিটি</span>
+        </button>
+        <button class="nav-item" data-tab="rules" onclick="switchTab('rules')">
+          <span class="nav-icon">📜</span>
+          <span>নিয়মাবলী</span>
+        </button>
+        <button class="nav-item" data-tab="post" onclick="switchTab('post')">
+          <span class="nav-icon">📝</span>
+          <span>পোস্ট</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Made with ❤️ by SIFAT</p>
+      </div>
+    </aside>
+
+    <!-- OVERLAY -->
+    <div id="sidebar-overlay" class="sidebar-overlay hidden" onclick="toggleSidebar()"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-btn" onclick="toggleSidebar()">
+            <span></span><span></span><span></span>
+          </button>
+          <h2 id="tab-title">হোম</h2>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()">লগআউট</button>
+      </header>
+
+      <!-- TAB CONTENTS -->
+
+      <!-- HOME TAB -->
+      <section id="tab-home" class="tab-content active">
+        <div class="welcome-hero">
+          <div class="hero-glow"></div>
+          <div class="hero-badge">✨ স্বাগতম</div>
+          <h1>Friends Chat-এ স্বাগতম!</h1>
+          <p>SIFAT কর্তৃক তৈরি একটি আধুনিক চ্যাট প্ল্যাটফর্ম</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-icon">👥</div>
+            <h3>কমিউনিটি চ্যাট</h3>
+            <p>সকলের সাথে রিয়েল-টাইমে কথা বলুন। আমাদের AI ফিল্টার সর্বদা পরিবেশ সুন্দর রাখে।</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🛡️</div>
+            <h3>AI সুরক্ষা</h3>
+            <p>স্বয়ংক্রিয় AI ফিল্টার আপত্তিজনক শব্দ ও ইমোজি ব্লক করে নিরাপদ পরিবেশ নিশ্চিত করে।</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📝</div>
+            <h3>পোস্ট ফিড</h3>
+            <p>আপনার মতামত শেয়ার করুন। Facebook-এর মতো স্ট্যাটাস পোস্ট করুন সহজেই।</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🌙</div>
+            <h3>প্রিমিয়াম ডার্ক UI</h3>
+            <p>চোখের জন্য আরামদায়ক গাঢ় থিম। যেকোনো ডিভাইসে সুন্দরভাবে কাজ করে।</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY TAB -->
+      <section id="tab-community" class="tab-content hidden">
+        <div class="chat-container">
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-day-label">আজকের চ্যাট</div>
+            <div class="system-msg">👋 কমিউনিটি চ্যাটে আপনাকে স্বাগতম! সুন্দর ভাষায় কথা বলুন।</div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="মেসেজ লিখুন..." onkeydown="if(event.key==='Enter') sendMessage()" maxlength="500" />
+            <button class="btn-send" onclick="sendMessage()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RULES TAB -->
+      <section id="tab-rules" class="tab-content hidden">
+        <div class="rules-container">
+          <div class="rules-header">
+            <div class="rules-avatar">👋</div>
+            <div>
+              <h2>হ্যালো! আমি SIFAT।</h2>
+              <p>Friends Chat-এ আপনাকে স্বাগতম! নিচের নিয়মগুলো মেনে চলুন।</p>
+            </div>
+          </div>
+
+          <div class="rules-list">
+            <div class="rule-card">
+              <div class="rule-badge">১</div>
+              <div class="rule-content">
+                <h3>🚫 খারাপ ভাষা নিষিদ্ধ</h3>
+                <p>যেকোনো গালি, অশ্লীল শব্দ বা আপত্তিজনক ইমোজি ব্যবহার করা সম্পূর্ণ নিষিদ্ধ। আমাদের AI ফিল্টার স্বয়ংক্রিয়ভাবে এসব ব্লক করবে।</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <div class="rule-badge">২</div>
+              <div class="rule-content">
+                <h3>🤝 বন্ধুত্বপূর্ণ পরিবেশ</h3>
+                <p>সবার সাথে সম্মানের সাথে কথা বলুন। একে অপরকে সাহায্য করুন। এটি একটি পরিবারের মতো জায়গা।</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <div class="rule-badge">৩</div>
+              <div class="rule-content">
+                <h3>📵 স্প্যামিং নিষিদ্ধ</h3>
+                <p>একই মেসেজ বারবার পাঠানো, অর্থহীন অক্ষর টাইপ করা বা চ্যাট ভরিয়ে ফেলা কঠোরভাবে নিষিদ্ধ।</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <div class="rule-badge">৪</div>
+              <div class="rule-content">
+                <h3>🛡️ AI ফিল্টার নীতি</h3>
+                <p>প্ল্যাটফর্মে একটি স্বয়ংক্রিয় AI ফিল্টার কার্যকর আছে। নিষিদ্ধ শব্দ পাঠানোর চেষ্টা করলে মেসেজ ব্লক হবে এবং সতর্কবার্তা দেখাবে।</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <div class="rule-badge">৫</div>
+              <div class="rule-content">
+                <h3>👮 অ্যাডমিন নজরদারি</h3>
+                <p>অ্যাডমিন দল সার্বক্ষণিক চ্যাট মনিটর করে। বারবার নিয়ম ভাঙলে অ্যাকাউন্ট স্থায়ীভাবে বাতিল করা হতে পারে।</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <div class="rule-badge">৬</div>
+              <div class="rule-content">
+                <h3>🎉 মজা করুন!</h3>
+                <p>নিয়ম মেনে চলুন এবং সুন্দর আলোচনা করুন। Friends Chat একটি আনন্দময় জায়গা — চলুন এটিকে সুন্দর রাখি!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POST TAB -->
+      <section id="tab-post" class="tab-content hidden">
+        <div class="post-container">
+          <div class="post-composer">
+            <div class="composer-header">
+              <div class="composer-avatar" id="post-avatar">U</div>
+              <div class="composer-info">
+                <span id="post-name">ব্যবহারকারী</span>
+                <span class="composer-hint">আপনার মনের কথা শেয়ার করুন...</span>
+              </div>
+            </div>
+            <textarea id="post-input" placeholder="আপনি কী ভাবছেন?" rows="3" maxlength="1000"></textarea>
+            <div class="composer-footer">
+              <span class="char-count" id="post-char">০/১০০০</span>
+              <button class="btn-post" onclick="createPost()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+                পোস্ট করুন
+              </button>
+            </div>
+          </div>
+
+          <div id="post-feed" class="post-feed">
+            <div class="system-msg">📝 এখনো কোনো পোস্ট নেই। প্রথম পোস্টটি আপনিই করুন!</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
