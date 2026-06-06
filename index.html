@@ -33,7 +33,7 @@
             <nav class="menu">
                 <button class="menu-btn active" onclick="switchTab('home')">🏠 Home</button>
                 <button class="menu-btn" onclick="switchTab('community')">👥 Community</button>
-                <button class="menu-btn" onclick="switchTab('rules')">📜 Rules (Locked)</button>
+                <button class="menu-btn" onclick="switchTab('rules')">📜 Rules</button>
                 <button class="menu-btn" onclick="switchTab('post')">📝 Post (Locked)</button>
             </nav>
         </div>
@@ -47,7 +47,7 @@
             <div class="main-card" id="dynamic-content">
                 <div id="dashboard-view">
                     <h3>Welcome to your new platform!</h3>
-                    <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। বাম পাশের মেনু থেকে <b>Community</b> সিলেক্ট করে এআই ফিল্টারসহ চ্যাটরুম টেস্ট করুন।</p>
+                    <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। বাম পাশের মেনু থেকে <b>Community</b> এবং <b>Rules</b> সিলেক্ট করে ফিচারগুলো টেস্ট করুন।</p>
                 </div>
 
                 <div id="community-view" style="display: none; height: 100%; flex-direction: column;">
@@ -64,6 +64,48 @@
                         <button class="btn-send" onclick="sendCommunityMessage()">Send</button>
                     </div>
                 </div>
+
+                <div id="rules-view" style="display: none; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 420px;">
+                    <div class="rules-header">
+                        <h2>HI I'm SIFAT.</h2>
+                        <p>Welcome to our Friends chat! আমাদের প্ল্যাটফর্মটিকে সুন্দর ও নিরাপদ রাখতে নিচের নিয়মগুলো মেনে চলুন:</p>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <span class="rule-number">১</span>
+                            <div class="rule-text">
+                                <h4>এআই ফিল্টার (AI Filter) নীতি</h4>
+                                <p>চ্যাট বা পোস্টে কোনো ধরনের খারাপ বাংলা/ইংলিশ শব্দ অথবা বাজে ইমোজি ব্যবহার করা সম্পূর্ণ নিষেধ। আমাদের কাস্টম এআই স্বয়ংক্রিয়ভাবে এগুলো ব্লক করে দেবে।</p>
+                            </div>
+                        </div>
+
+                        <div class="rule-item">
+                            <span class="rule-number">২</span>
+                            <div class="rule-text">
+                                <h4>বন্ধুত্বপূর্ণ আচরণ</h4>
+                                <p>কমিউনিটির সবার সাথে ভদ্র ও বন্ধুত্বপূর্ণ আচরণ করুন। কাউকে ব্যক্তিগতভাবে আক্রমণ বা ছোট করা যাবে না।</p>
+                            </div>
+                        </div>
+
+                        <div class="rule-item">
+                            <span class="rule-number">৩</span>
+                            <div class="rule-text">
+                                <h4>নো স্প্যামিং (No Spamming)</h4>
+                                <p>চ্যাটরুমে একই মেসেজ বারবার পাঠিয়ে বা কোনো লিংক শেয়ার করে স্প্যামিং করা যাবে না। এতে অন্যের চ্যাট করতে সমস্যা হয়।</p>
+                            </div>
+                        </div>
+
+                        <div class="rule-item">
+                            <span class="rule-number">৪</span>
+                            <div class="rule-text">
+                                <h4>সহায়তা ও মডারেশন</h4>
+                                <p>প্ল্যাটফর্মে কোনো সমস্যা হলে বা কেউ নিয়ম ভঙ্গ করলে সরাসরি আমাদের অ্যাডমিন প্যানেলকে জানান। পরবর্তীতে আমরা এখানে আরও নতুন নিয়ম যোগ করব।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
