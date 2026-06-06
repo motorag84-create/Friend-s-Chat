@@ -32,9 +32,9 @@
             </div>
             <nav class="menu">
                 <button class="menu-btn active" onclick="switchTab('home')">🏠 Home</button>
-                <button class="menu-btn" onclick="switchTab('post')">📝 Post (Locked)</button>
-                <button class="menu-btn" onclick="switchTab('community')">👥 Community (Locked)</button>
+                <button class="menu-btn" onclick="switchTab('community')">👥 Community</button>
                 <button class="menu-btn" onclick="switchTab('rules')">📜 Rules (Locked)</button>
+                <button class="menu-btn" onclick="switchTab('post')">📝 Post (Locked)</button>
             </nav>
         </div>
 
@@ -45,8 +45,25 @@
             </header>
             
             <div class="main-card" id="dynamic-content">
-                <h3>Welcome to your new platform!</h3>
-                <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। পরবর্তী ধাপে আমরা এখানে কাস্টম এআই এবং অন্যান্য অপশনগুলো এক এক করে যোগ করব।</p>
+                <div id="dashboard-view">
+                    <h3>Welcome to your new platform!</h3>
+                    <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। বাম পাশের মেনু থেকে <b>Community</b> সিলেক্ট করে এআই ফিল্টারসহ চ্যাটরুম টেস্ট করুন।</p>
+                </div>
+
+                <div id="community-view" style="display: none; height: 100%; flex-direction: column;">
+                    <div id="ai-banner" class="ai-alert-banner" style="display: none;">
+                        ⚠️ <span id="ai-banner-text">আপনার এই লেখা/ইমোজি দেওয়া নিষেধ!</span>
+                    </div>
+
+                    <div id="chat-box" class="chat-messages-container">
+                        <div class="msg system">System: Welcome to the Global Community Chat!</div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-message-input" placeholder="Type a message..." onkeypress="handleChatKeyPress(event)">
+                        <button class="btn-send" onclick="sendCommunityMessage()">Send</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
