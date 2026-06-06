@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Extensible Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="login-container">
+        <div class="login-box">
+            <h2>Welcome Back</h2>
+            <p>Login with your UI Number or Gmail</p>
+            
+            <div class="input-group">
+                <input type="text" id="login-identifier" placeholder="UI Number or Gmail" required>
+            </div>
+            
+            <button class="btn-primary" onclick="handleLogin()">Login</button>
+            <hr class="divider">
+            <button class="btn-google" onclick="handleGoogleLogin()">Sign in with Google</button>
+        </div>
+    </div>
+
+    <div id="main-platform" class="dashboard-container" style="display: none;">
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="avatar">👤</div>
+                <h3 id="user-display-name">User Name</h3>
+                <span id="user-display-ui" class="ui-tag">UI: 00000000</span>
+            </div>
+            <nav class="menu">
+                <button class="menu-btn active" onclick="switchTab('home')">🏠 Home</button>
+                <button class="menu-btn" onclick="switchTab('post')">📝 Post (Locked)</button>
+                <button class="menu-btn" onclick="switchTab('community')">👥 Community (Locked)</button>
+                <button class="menu-btn" onclick="switchTab('rules')">📜 Rules (Locked)</button>
+            </nav>
+        </div>
+
+        <div class="content-area">
+            <header class="top-bar">
+                <h2 id="current-tab-title">Home Dashboard</h2>
+                <button class="btn-logout" onclick="handleLogout()">Logout</button>
+            </header>
+            
+            <div class="main-card" id="dynamic-content">
+                <h3>Welcome to your new platform!</h3>
+                <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। পরবর্তী ধাপে আমরা এখানে কাস্টম এআই এবং অন্যান্য অপশনগুলো এক এক করে যোগ করব।</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

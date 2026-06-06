@@ -1,0 +1,164 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* লগইন স্ক্রিন ডিজাইন */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1e1b4b, var(--bg-dark));
+}
+
+.login-box {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.login-box h2 { margin-bottom: 8px; }
+.login-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 16px;
+    outline: none;
+}
+
+.input-group input:focus { border-color: var(--primary); }
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.divider { margin: 20px 0; border: 0; border-top: 1px solid var(--border); }
+
+.btn-google {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ড্যাশবোর্ড লেআউট */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.profile-section {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.avatar { font-size: 40px; margin-bottom: 8px; }
+.ui-tag { display: inline-block; background: var(--bg-dark); padding: 4px 10px; border-radius: 20px; font-size: 12px; color: var(--primary); margin-top: 5px; font-weight: bold;}
+
+.menu { display: flex; flex-direction: column; gap: 8px; }
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.menu-btn:hover, .menu-btn.active {
+    background: var(--bg-dark);
+    color: var(--text-main);
+}
+
+.content-area { flex: 1; display: flex; flex-direction: column; }
+.top-bar {
+    background: var(--bg-card);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.btn-logout {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.main-card {
+    margin: 30px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 30px;
+    border-radius: 12px;
+    flex: 1;
+}
+
+/* মোবাইল রেসপনসিভ */
+@media (max-width: 768px) {
+    .dashboard-container { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; }
+}
