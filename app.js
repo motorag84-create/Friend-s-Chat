@@ -23,10 +23,10 @@ function handleGoogleLogin() {
     showDashboard(mockUser.name, mockUser.uiNumber);
 }
 
-// ড্যাশবোর্ড ওপেন করার ফাংশন (ফিক্সড)
+// ড্যাশবোর্ড ওপেন করার ফাংশন
 function showDashboard(name, ui) {
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('main-platform').style.display = 'flex'; // ফিক্সড লাইন
+    document.getElementById('main-platform').style.display = 'flex';
     document.getElementById('user-display-name').innerText = name;
     document.getElementById('user-display-ui').innerText = "UI: " + ui;
 }
@@ -38,37 +38,39 @@ function handleLogout() {
     document.getElementById('login-identifier').value = "";
 }
 
-// সাইডবার মেনু ট্যাব পরিবর্তনের লজিক
+// সাইডবার মেনু ট্যাব পরিবর্তনের লজিক (Rules অপশন আনলকড)
 function switchTab(tabName) {
     const buttons = document.querySelectorAll('.menu-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
     
-    // যে বাটনে ক্লিক করা হয়েছে সেটিকে active করা
+    // active ক্লাস যোগ করা
     if (event && event.target) {
         event.target.classList.add('active');
     }
 
     const dashboardView = document.getElementById('dashboard-view');
     const communityView = document.getElementById('community-view');
+    const rulesView = document.getElementById('rules-view');
     const title = document.getElementById('current-tab-title');
+
+    // সব ভিউ আগে হাইড করা
+    dashboardView.style.display = 'none';
+    communityView.style.display = 'none';
+    rulesView.style.display = 'none';
 
     if (tabName === 'home') {
         title.innerText = "Home Dashboard";
         dashboardView.style.display = 'block';
-        communityView.style.display = 'none';
-        dashboardView.innerHTML = `
-            <h3>Welcome to your new platform!</h3>
-            <p>প্ল্যাটফর্মের মূল কাঠামো তৈরি। বাম পাশের মেনু থেকে <b>Community</b> সিলেক্ট করে এআই ফিল্টারসহ চ্যাটরুম টেস্ট করুন।</p>
-        `;
     } else if (tabName === 'community') {
         title.innerText = "Community Chat";
-        dashboardView.style.display = 'none';
         communityView.style.display = 'flex';
+    } else if (tabName === 'rules') {
+        title.innerText = "Platform Rules";
+        rulesView.style.display = 'flex';
     } else {
         title.innerText = tabName.toUpperCase();
         dashboardView.style.display = 'block';
-        communityView.style.display = 'none';
-        dashboardView.innerHTML = `<h3>${tabName.toUpperCase()} Feature</h3><p>এই অপশনটি লক করা আছে। চ্যাটরুমের পর আমরা আপনার রোডম্যাপ অনুযায়ী এটি বিল্ড করব।</p>`;
+        dashboardView.innerHTML = `<h3>${tabName.toUpperCase()} Feature</h3><p>এই অপশনটি লক করা আছে। রুলস অপশনের পর আমরা এটি বিল্ড করব।</p>`;
     }
 }
 
@@ -81,7 +83,6 @@ function sendCommunityMessage() {
 
     if (messageText === "") return;
 
-    // ১. কাস্টম এআই স্ক্যানিং শুরু
     let containsBadElement = false;
     let foundElement = "";
 
@@ -93,14 +94,12 @@ function sendCommunityMessage() {
         }
     }
 
-    // ২. যদি এআই কোনো নিষিদ্ধ উপাদান পায়, তবে মেসেজ ব্লক করবে
     if (containsBadElement) {
         aiBannerText.innerText = `${mockUser.name}, আপনার লেখায় "${foundElement}" দেওয়া নিষেধ!`;
         aiBanner.style.display = 'block'; 
         return; 
     }
 
-    // ৩. কোনো ভুল না থাকলে মেসেজ সেন্ড হবে এবং ব্যানার হাইড হবে
     aiBanner.style.display = 'none';
     
     const chatBox = document.getElementById('chat-box');
@@ -110,10 +109,9 @@ function sendCommunityMessage() {
     
     chatBox.appendChild(messageElement);
     inputField.value = ""; 
-    chatBox.scrollTop = chatBox.scrollHeight; // চ্যাটবক্স অটো স্ক্রোল ডাউন হবে
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// এন্টার বাটন প্রেস করলে মেসেজ যাবে
 function handleChatKeyPress(event) {
     if (event.key === 'Enter') {
         sendCommunityMessage();
