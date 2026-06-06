@@ -26,21 +26,29 @@
         <h1>Friends Chat</h1>
         <p>SIFAT কর্তৃক নির্মিত</p>
       </div>
-      <div class="login-form">
-        <div class="input-group">
-          <label>UI নম্বর অথবা Gmail</label>
-          <input type="text" id="login-input" placeholder="আপনার UI নম্বর বা Gmail লিখুন..." />
-        </div>
-        <button class="btn-login" onclick="handleLogin()">
-          <span>লগইন করুন</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-        <div class="divider"><span>অথবা</span></div>
-        <button class="btn-google" onclick="handleGoogleLogin()">
-          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Google দিয়ে সাইন ইন
-        </button>
+      <button class="btn-google" onclick="handleGoogleLogin()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Google দিয়ে Login করুন
+      </button>
+    </div>
+  </div>
+
+  <!-- USERNAME MODAL -->
+  <div id="username-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-logo">
+        <div class="logo-icon">FC</div>
+        <h2>আপনার নাম দিন!</h2>
+        <p>Friends Chat এ আপনাকে স্বাগতম 👋</p>
       </div>
+      <div class="input-group">
+        <label>আপনার Username</label>
+        <input type="text" id="username-input" placeholder="যেমন: Sifat, Riya, Arif..." maxlength="20" />
+      </div>
+      <button class="btn-login" onclick="saveUsername()">
+        <span>শুরু করুন</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
 
@@ -67,20 +75,16 @@
 
       <nav class="sidebar-nav">
         <button class="nav-item active" data-tab="home" onclick="switchTab('home')">
-          <span class="nav-icon">🏠</span>
-          <span>হোম</span>
+          <span class="nav-icon">🏠</span><span>হোম</span>
         </button>
         <button class="nav-item" data-tab="community" onclick="switchTab('community')">
-          <span class="nav-icon">👥</span>
-          <span>কমিউনিটি</span>
+          <span class="nav-icon">👥</span><span>কমিউনিটি</span>
         </button>
         <button class="nav-item" data-tab="rules" onclick="switchTab('rules')">
-          <span class="nav-icon">📜</span>
-          <span>নিয়মাবলী</span>
+          <span class="nav-icon">📜</span><span>নিয়মাবলী</span>
         </button>
         <button class="nav-item" data-tab="post" onclick="switchTab('post')">
-          <span class="nav-icon">📝</span>
-          <span>পোস্ট</span>
+          <span class="nav-icon">📝</span><span>পোস্ট</span>
         </button>
       </nav>
 
@@ -89,12 +93,10 @@
       </div>
     </aside>
 
-    <!-- OVERLAY -->
     <div id="sidebar-overlay" class="sidebar-overlay hidden" onclick="toggleSidebar()"></div>
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
-      <!-- TOP BAR -->
       <header class="topbar">
         <div class="topbar-left">
           <button class="menu-btn" onclick="toggleSidebar()">
@@ -105,36 +107,34 @@
         <button class="btn-logout" onclick="handleLogout()">লগআউট</button>
       </header>
 
-      <!-- TAB CONTENTS -->
-
       <!-- HOME TAB -->
       <section id="tab-home" class="tab-content active">
         <div class="welcome-hero">
           <div class="hero-glow"></div>
           <div class="hero-badge">✨ স্বাগতম</div>
-          <h1>Friends Chat-এ স্বাগতম!</h1>
+          <h1>Friends Chat এ স্বাগতম!</h1>
           <p>SIFAT কর্তৃক তৈরি একটি আধুনিক চ্যাট প্ল্যাটফর্ম</p>
         </div>
         <div class="info-grid">
           <div class="info-card">
             <div class="info-icon">👥</div>
             <h3>কমিউনিটি চ্যাট</h3>
-            <p>সকলের সাথে রিয়েল-টাইমে কথা বলুন। আমাদের AI ফিল্টার সর্বদা পরিবেশ সুন্দর রাখে।</p>
+            <p>সকলের সাথে রিয়েল-টাইমে কথা বলুন। মেসেজ permanent ভাবে সেভ থাকে।</p>
           </div>
           <div class="info-card">
             <div class="info-icon">🛡️</div>
             <h3>AI সুরক্ষা</h3>
-            <p>স্বয়ংক্রিয় AI ফিল্টার আপত্তিজনক শব্দ ও ইমোজি ব্লক করে নিরাপদ পরিবেশ নিশ্চিত করে।</p>
+            <p>স্বয়ংক্রিয় AI ফিল্টার আপত্তিজনক শব্দ ব্লক করে নিরাপদ পরিবেশ নিশ্চিত করে।</p>
           </div>
           <div class="info-card">
             <div class="info-icon">📝</div>
             <h3>পোস্ট ফিড</h3>
-            <p>আপনার মতামত শেয়ার করুন। Facebook-এর মতো স্ট্যাটাস পোস্ট করুন সহজেই।</p>
+            <p>আপনার মতামত শেয়ার করুন। সব পোস্ট permanent ভাবে সেভ থাকে।</p>
           </div>
           <div class="info-card">
-            <div class="info-icon">🌙</div>
-            <h3>প্রিমিয়াম ডার্ক UI</h3>
-            <p>চোখের জন্য আরামদায়ক গাঢ় থিম। যেকোনো ডিভাইসে সুন্দরভাবে কাজ করে।</p>
+            <div class="info-icon">🔐</div>
+            <h3>Google Login</h3>
+            <p>Google account দিয়ে login করুন। যেকোনো ডিভাইসে আপনার data পাবেন।</p>
           </div>
         </div>
       </section>
@@ -143,8 +143,8 @@
       <section id="tab-community" class="tab-content hidden">
         <div class="chat-container">
           <div class="chat-messages" id="chat-messages">
-            <div class="chat-day-label">আজকের চ্যাট</div>
-            <div class="system-msg">👋 কমিউনিটি চ্যাটে আপনাকে স্বাগতম! সুন্দর ভাষায় কথা বলুন।</div>
+            <div class="chat-day-label">কমিউনিটি চ্যাট</div>
+            <div class="system-msg" id="chat-loading">⏳ মেসেজ লোড হচ্ছে...</div>
           </div>
           <div class="chat-input-area">
             <input type="text" id="chat-input" placeholder="মেসেজ লিখুন..." onkeydown="if(event.key==='Enter') sendMessage()" maxlength="500" />
@@ -162,51 +162,36 @@
             <div class="rules-avatar">👋</div>
             <div>
               <h2>হ্যালো! আমি SIFAT।</h2>
-              <p>Friends Chat-এ আপনাকে স্বাগতম! নিচের নিয়মগুলো মেনে চলুন।</p>
+              <p>Friends Chat এ আপনাকে স্বাগতম! নিচের নিয়মগুলো মেনে চলুন।</p>
             </div>
           </div>
-
-          <div class="rules-list">
+          <div id="rules-list" class="rules-list">
             <div class="rule-card">
               <div class="rule-badge">১</div>
               <div class="rule-content">
                 <h3>🚫 খারাপ ভাষা নিষিদ্ধ</h3>
-                <p>যেকোনো গালি, অশ্লীল শব্দ বা আপত্তিজনক ইমোজি ব্যবহার করা সম্পূর্ণ নিষিদ্ধ। আমাদের AI ফিল্টার স্বয়ংক্রিয়ভাবে এসব ব্লক করবে।</p>
+                <p>যেকোনো গালি বা আপত্তিজনক শব্দ ব্যবহার সম্পূর্ণ নিষিদ্ধ। AI ফিল্টার স্বয়ংক্রিয়ভাবে ব্লক করবে।</p>
               </div>
             </div>
             <div class="rule-card">
               <div class="rule-badge">২</div>
               <div class="rule-content">
                 <h3>🤝 বন্ধুত্বপূর্ণ পরিবেশ</h3>
-                <p>সবার সাথে সম্মানের সাথে কথা বলুন। একে অপরকে সাহায্য করুন। এটি একটি পরিবারের মতো জায়গা।</p>
+                <p>সবার সাথে সম্মানের সাথে কথা বলুন। একে অপরকে সাহায্য করুন।</p>
               </div>
             </div>
             <div class="rule-card">
               <div class="rule-badge">৩</div>
               <div class="rule-content">
                 <h3>📵 স্প্যামিং নিষিদ্ধ</h3>
-                <p>একই মেসেজ বারবার পাঠানো, অর্থহীন অক্ষর টাইপ করা বা চ্যাট ভরিয়ে ফেলা কঠোরভাবে নিষিদ্ধ।</p>
+                <p>একই মেসেজ বারবার পাঠানো বা অর্থহীন অক্ষর টাইপ করা নিষিদ্ধ।</p>
               </div>
             </div>
             <div class="rule-card">
               <div class="rule-badge">৪</div>
               <div class="rule-content">
-                <h3>🛡️ AI ফিল্টার নীতি</h3>
-                <p>প্ল্যাটফর্মে একটি স্বয়ংক্রিয় AI ফিল্টার কার্যকর আছে। নিষিদ্ধ শব্দ পাঠানোর চেষ্টা করলে মেসেজ ব্লক হবে এবং সতর্কবার্তা দেখাবে।</p>
-              </div>
-            </div>
-            <div class="rule-card">
-              <div class="rule-badge">৫</div>
-              <div class="rule-content">
                 <h3>👮 অ্যাডমিন নজরদারি</h3>
-                <p>অ্যাডমিন দল সার্বক্ষণিক চ্যাট মনিটর করে। বারবার নিয়ম ভাঙলে অ্যাকাউন্ট স্থায়ীভাবে বাতিল করা হতে পারে।</p>
-              </div>
-            </div>
-            <div class="rule-card">
-              <div class="rule-badge">৬</div>
-              <div class="rule-content">
-                <h3>🎉 মজা করুন!</h3>
-                <p>নিয়ম মেনে চলুন এবং সুন্দর আলোচনা করুন। Friends Chat একটি আনন্দময় জায়গা — চলুন এটিকে সুন্দর রাখি!</p>
+                <p>অ্যাডমিন সার্বক্ষণিক চ্যাট মনিটর করে। নিয়ম ভাঙলে account বাতিল হতে পারে।</p>
               </div>
             </div>
           </div>
@@ -233,9 +218,8 @@
               </button>
             </div>
           </div>
-
           <div id="post-feed" class="post-feed">
-            <div class="system-msg">📝 এখনো কোনো পোস্ট নেই। প্রথম পোস্টটি আপনিই করুন!</div>
+            <div class="system-msg" id="post-loading">⏳ পোস্ট লোড হচ্ছে...</div>
           </div>
         </div>
       </section>
@@ -243,6 +227,42 @@
     </main>
   </div>
 
-  <script src="app.js"></script>
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel" class="admin-panel hidden">
+    <div class="admin-topbar">
+      <div class="admin-brand">
+        <span>🛡️ Admin Dashboard</span>
+        <span class="admin-badge">SIFAT</span>
+      </div>
+      <button class="btn-logout" onclick="closeAdmin()">বন্ধ করুন</button>
+    </div>
+    <div class="admin-content">
+      <div class="admin-grid">
+
+        <div class="admin-card">
+          <h3>👥 সকল User</h3>
+          <div id="admin-users" class="admin-list">লোড হচ্ছে...</div>
+        </div>
+
+        <div class="admin-card">
+          <h3>🚨 Blocked Word Log</h3>
+          <div id="admin-logs" class="admin-list">লোড হচ্ছে...</div>
+        </div>
+
+        <div class="admin-card full-width">
+          <h3>💬 সকল Chat Message</h3>
+          <div id="admin-chats" class="admin-list">লোড হচ্ছে...</div>
+        </div>
+
+        <div class="admin-card full-width">
+          <h3>📝 সকল Post</h3>
+          <div id="admin-posts" class="admin-list">লোড হচ্ছে...</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
