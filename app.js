@@ -19,7 +19,7 @@ const firebaseConfig = {
 };
 
 // ---- ADMIN GMAIL ---- (শুধু তোমার Gmail এখানে দাও)
-const ADMIN_EMAIL = "Mohammadsifat1820@gmail.com";
+const ADMIN_EMAIL = "mohammadsifat1820@gmail.com";
 
 // ---- AI FILTER ----
 const RESTRICTED = [
@@ -170,7 +170,7 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById('dashboard').classList.remove('hidden');
 
     // Admin check
-    if (user.email === ADMIN_EMAIL) {
+    if (user.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
       addAdminButton();
     }
 
